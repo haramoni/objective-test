@@ -3,7 +3,7 @@ import { Container, CustomStyles } from "../styles/style";
 import { FaSearch, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import api from "../services/api";
 import Modal from "react-modal";
-import HomePage from "./HomePage";
+import ModalComponent from "../components/modal";
 import keys from "../keys.json";
 import md5 from "md5";
 
@@ -156,7 +156,7 @@ function Home() {
         style={CustomStyles}
         contentLabel="Example Modal"
       >
-        <HomePage data={info} size={windowSize} />
+        <ModalComponent data={info} size={windowSize} />
       </Modal>
     </Container>
   );

@@ -1,6 +1,3 @@
-import React, { useEffect, useState } from "react";
-import keys from "../keys.json";
-import md5 from "md5";
 import { Container } from "../styles/styleModal";
 
 function modal(props: any) {
