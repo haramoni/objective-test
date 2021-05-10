@@ -1,18 +1,12 @@
 import { Container } from "../styles/styleModal";
 
 function modal(props: any) {
+  console.log(props);
   return (
     <Container>
       <h1>{props.data.name}</h1>
-      <span>Comics:</span>
       <div className="infoContainer">
-        {props.data.comics.items.map((item: any, index: any) => {
-          return (
-            <div>
-              <span>{item.name}</span>
-            </div>
-          );
-        })}
+        <span>{props.data.description}</span>
         {props.size && (
           <>
             <div>

@@ -9,153 +9,213 @@ export const Container = styled.div<ISize>`
   width: 100vw;
   height: 100vh;
   flex-direction: column;
+  font-family: PT Sans Caption;
 
   .headerContainer {
     display: flex;
-    flex: 0.5;
-    justify-content: center;
+    flex: 0.8;
     align-items: center;
+    flex-direction: row;
+    background: white;
+    justify-content: ${({ size }) => (size ? "center" : "space-between")};
+    padding: 1vw;
+
+    img {
+      width: 8vw;
+    }
+  }
+
+  .buttonInput {
+    height: 1.6vw;
+    width: 1vw;
+    border: none;
+    background: #ffffff;
+    cursor: pointer;
+    margin-top: auto;
+  }
+
+  .button {
+    text-align: left;
+    background: transparent;
+    border: none;
+  }
+
+  .content {
+    display: flex;
+    flex: 11;
+    padding: 1vw 10vw 0vw 10vw;
     flex-direction: column;
   }
 
+  .candidateInfo {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 20vw;
+
+    span {
+      color: #555555;
+      font-size: 1vw;
+    }
+
+    span:first-child {
+      font-weight: bold;
+    }
+  }
+
+  .box {
+    background: #f5f5f5;
+    width: 1.8vw;
+    height: 1.8vw;
+    border-radius: 0.3vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+
+  .searchContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1vw 10vw 1vw 10vw;
+    justify-content: space-evenly;
+    align-items: ${({ size }) => (size ? "center" : "")};
+
+    h1 {
+      font-family: PT Sans Caption;
+      color: #555555;
+      font-size: 1.9vw;
+    }
+
+    h2 {
+      color: #555555;
+      font: PT Sans Caption;
+      margin-top: 0.6vw;
+      font-size: 1vw;
+    }
+
+    input {
+      width: 15vw;
+      border: none;
+      height: 1.6vw;
+      margin-top: 0.6vw;
+      padding-left: 1vw;
+
+      font: italic normal normal 14px/19px PT Sans;
+      letter-spacing: 0px;
+      color: #8e8e8e;
+      outline: 0;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+  }
+
+  .contentTitle {
+    padding: 1vw 10vw 0vw 10vw;
+    display: flex;
+    width: 100vw;
+    flex: 0.1;
+  }
+
   .title {
-    color: red;
-    font-family: "Bebas Neue", cursive;
-    font-size: 4.5vw;
+    width: 26vw;
+    margin-top: auto;
+    text-align: left;
+    font-family: PT Sans;
+    font-size: 0.6;
+    letter-spacing: 0px;
+    color: #8e8e8e;
+    padding-left: 1.2vw;
+    opacity: 1;
+  }
+
+  .heroInfo {
+    display: flex;
+    height: 5.7vw;
+    margin-top: 1vw;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 0.3vw;
+    flex-direction: row;
+
+    cursor: pointer;
+  }
+
+  .character {
+    display: flex;
+    flex: 1;
+    align-items: center;
+  }
+
+  .series {
+    display: ${({ size }) => (size ? "none" : "flex")};
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    color: #555555;
+    font-family: PT Sans;
+    font-size: 0.9vw;
+  }
+
+  .events {
+    display: ${({ size }) => (size ? "none" : "flex")};
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    color: #555555;
+    font-family: PT Sans;
+    font-size: 0.9vw;
+  }
+
+  .testeImg {
+    width: 3.5vw;
+    height: 3.5vw;
+    border-radius: 0.2vw;
+    margin-left: 1.2vw;
+  }
+
+  .mainText {
+    margin-left: 1.5vw;
+    font-family: PT Sans;
+    font-size: 0.9vw;
+    font-size: ${({ size }) => (size ? "2vw" : "0.9vw")};
+
+    font-weight: bold;
+    letter-spacing: 0px;
+    color: #555555;
+  }
+
+  .navigation {
+    display: flex;
+    margin-top: 2vw;
+    background: #ffffff;
+    padding: 2vw;
+    align-items: center;
+    justify-content: center;
+    height: 5vw;
+
+    .navigationButton {
+      width: 2.5vw;
+      height: 2.5vw;
+      background: #f5f5f5 0% 0% no-repeat padding-box;
+      border: 1px solid #e5e5e5;
+      opacity: 1;
+      border-radius: 0.3vw;
+      cursor: pointer;
+    }
+  }
+
+  .buttonContainer {
+    width: 20vw;
+    display: flex;
+    justify-content: space-evenly;
   }
 
   .inputContainer {
     display: flex;
-    justify-content: center;
-    aling-items: center;
-  }
-
-  .searchTitle {
-    color: blue;
-    font-family: "Bebas Neue", cursive;
-    font-size: 1.8vw;
-    font-weight: 500;
-  }
-
-  .inputStyle {
-    border: none;
-    height: 2.2vw;
-    padding-left: 1vw;
-    border-radius: 1vw 0 0 1vw;
-    margin-left: 1vw;
-    width: 16vw;
-    outline: 0;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
-
-  .buttonInput {
-    border: none;
-    background: white;
-    border-radius: 0 1vw 1vw 0;
-    width: 2vw;
-    cursor: pointer;
-  }
-
-  .infoContainer {
-    display: flex;
-    flex: 3;
-    justify-content: center;
-    padding: 1vw;
-  }
-
-  .buttonContainer {
-    display: flex;
-    flex: 0.4;
-    justify-content: space-evenly;
-  }
-
-  .icon {
-    width: 2vw;
-    height: 2vw;
-    color: white;
-  }
-
-  .buttonIcon {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-  }
-
-  .grid {
-    display: inline-grid;
-    grid-gap: 2vw;
-    height: fit-content;
-    justify-content: center;
     align-items: center;
-    grid-template-rows: auto auto auto auto auto;
-
-    grid-template-columns: ${({ size }) =>
-      size ? "repeat(1, auto)" : "repeat(2, auto)"};
-
-    align-content: center;
-  }
-
-  .container {
-    width: 36vw;
-    display: flex;
-    flex-direction: row;
-    height: 12vw;
-    border-radius: 6vw 2vw 2vw 6vw;
-    border: none;
-    cursor: pointer;
-  }
-
-  .imageContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    margin-top: 1vw;
-  }
-
-  .testeImg {
-    border-radius: 100%;
-    width: 10vw;
-  }
-
-  .infosContainer {
-    display: flex;
-    padding: 1vw;
-    flex: 2;
-    align-items: center;
-    margin: auto;
-    flex-direction: column;
-  }
-
-  .mainText {
-    color: red;
-    font-size: ${({ size }) => (size ? "3vw" : "1.8vw")};
-
-    font-family: "Bebas Neue", cursive;
-  }
-
-  .dataContainer {
-    display: ${({ size }) => (size ? "none" : "flex")};
-
-    flex-direction: row;
-    width: 20vw;
-  }
-
-  .infoTitle {
-    font-size: 1.8vw;
-    font-family: "Bebas Neue", cursive;
-  }
-
-  .containerInfo {
-    display: flex;
-    flex-direction: column;
-    padding: 1vw;
-  }
-
-  .infoText {
-    font-family: "Marvel", sans-serif;
-    font-size: 1vw;
+    flex; 1;
   }
 `;
 

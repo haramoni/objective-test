@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 80vw;
-  height: 40vw;
+  width: 40vw;
+  height: 20vw;
 
   h1 {
     color: red;
@@ -19,7 +19,7 @@ export const Container = styled.div`
   .infoContainer {
     display: flex;
     flex-direction: column;
-    width: 80vw;
-    height: 60vw;
+    width: 40vw;
+    height: 20vw;
   }
 `;

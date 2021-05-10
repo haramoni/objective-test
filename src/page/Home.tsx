@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Container, CustomStyles } from "../styles/style";
-import { FaSearch, FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import api from "../services/api";
 import Modal from "react-modal";
 import ModalComponent from "../components/modal";
 import keys from "../keys.json";
 import md5 from "md5";
+
+import Logo from "../assets/logo.png";
 
 function Home() {
   const [data, setData] = useState([]);
@@ -17,13 +19,8 @@ function Home() {
   const [modal, setModal] = useState<any>(false);
   const [info, setInfo] = useState<any>();
   const [windowSize, setWindowSize] = useState(false);
+  const [series, setSeries] = useState<any>();
   // We listen to the resize event
-
-  let publicKey = keys.publickey;
-  let privateKey = keys.privatekey;
-  let date = Date.now();
-  let timestamp = date.toString();
-  let hash = md5(timestamp + privateKey + publicKey);
 
   window.addEventListener("resize", () => {
     // We execute the same script as before
@@ -35,6 +32,12 @@ function Home() {
     }
   });
 
+  let publicKey = keys.publickey;
+  let privateKey = keys.privatekey;
+  let date = Date.now();
+  let timestamp = date.toString();
+  let hash = md5(timestamp + privateKey + publicKey);
+
   useEffect(() => {
     api
       .get(
@@ -45,16 +48,6 @@ function Home() {
         setReload(false);
       });
   }, [startOffSet, reload]);
-
-  function handlePrev() {
-    if (startOffSet >= 0) {
-      setStartOffSet(startOffSet - 10);
-    }
-  }
-
-  function handleNext() {
-    setStartOffSet(startOffSet + 10);
-  }
 
   function handleButton() {
     if (name) {
@@ -82,9 +75,20 @@ function Home() {
   return (
     <Container size={windowSize}>
       <div className="headerContainer">
-        <h1 className="title">Busca de Personagens</h1>
+        <div>
+          <img src={Logo} alt="logo" />
+        </div>
+        <div className="candidateInfo">
+          <span>Júlia Haramoni</span>
+          <span>Teste de Front-end</span>
+          <span className="box">CB</span>
+        </div>
+      </div>
+
+      <div className="searchContainer">
+        <h1>Busca de personagens</h1>
+        <h2>Nome do personagem</h2>
         <div className="inputContainer">
-          <span className="searchTitle">Nome do Personagem: </span>
           <input
             className="inputStyle"
             type="text"
@@ -96,60 +100,81 @@ function Home() {
           </button>
         </div>
       </div>
-
-      <div className="infoContainer">
-        <div className="grid">
-          {data.map((item: any, index: any) => {
-            return (
-              <button
-                onClick={openModal.bind(this, item, index)}
-                className="container"
-              >
-                <div className="imageContainer">
+      <div className="contentTitle">
+        <div className="title">Personagem</div>
+        <div className="title">{windowSize ? "" : "Séries"}</div>
+        <div className="title">{windowSize ? "" : "Eventos"}</div>
+      </div>
+      <div className="content">
+        {data.map((item: any, index: any) => {
+          return (
+            <button
+              onClick={openModal.bind(this, item, index)}
+              className="button"
+            >
+              <div className="heroInfo">
+                <div className="character">
                   <img
                     className="testeImg"
-                    src={item.thumbnail.path + "/standard_xlarge.jpg"}
+                    src={item.thumbnail.path + "/standard_medium.jpg"}
                     alt=""
                   />
-                </div>
-                <div className="infosContainer">
                   <span className="mainText">{item.name}</span>
-                  <div className="dataContainer">
-                    <div className="containerInfo">
-                      <span className="infoTitle">Series</span>
-                      <span className="infoText">
-                        {item.series.items.name
-                          ? item.series.items.name
-                          : "Sem séries disponíveis!"}
-                      </span>
-                    </div>
-                    <div className="containerInfo">
-                      <span className="infoTitle">Eventos</span>
-                      <span className="infoText">
-                        {item.events.items[index]
-                          ? item.events.items[index].name
-                          : "Sem eventos!"}
-                      </span>
-                    </div>
-                  </div>
                 </div>
-              </button>
-            );
-          })}
+                <div className="series">
+                  {item.series.items.map((item: any, index: any) => {
+                    if (index < 3) {
+                      return <span>{item.name}</span>;
+                    }
+                  })}
+                </div>
+                <div className="events">
+                  {item.events.items.map((item: any, index: any) => {
+                    if (index < 3) {
+                      return <span>{item.name}</span>;
+                    }
+                  })}
+                </div>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+      <div className="navigation">
+        <div className="buttonContainer">
+          <button
+            className="navigationButton"
+            onClick={(e) => setStartOffSet(0)}
+          >
+            1
+          </button>
+          <button
+            className="navigationButton"
+            onClick={(e) => setStartOffSet(10)}
+          >
+            2
+          </button>
+          <button
+            className="navigationButton"
+            onClick={(e) => setStartOffSet(20)}
+          >
+            3
+          </button>
+          <button
+            className="navigationButton"
+            onClick={(e) => setStartOffSet(30)}
+          >
+            4
+          </button>
+          <button
+            className="navigationButton"
+            onClick={(e) => setStartOffSet(40)}
+          >
+            5
+          </button>
         </div>
       </div>
-      <div className="buttonContainer">
-        {isShown && (
-          <>
-            <button onClick={handlePrev} className="buttonIcon">
-              <FaArrowLeft className="icon" />
-            </button>
-            <button onClick={handleNext} className="buttonIcon">
-              <FaArrowRight className="icon" />
-            </button>
-          </>
-        )}
-      </div>
+
       <Modal
         isOpen={modal}
         onRequestClose={closeModal}
